@@ -263,7 +263,7 @@ ggplot(states_new) +
 
 11. Now create a county-level map. The county-level map data does not have a `fips` value, so to create one, use information from `maps::county.fips`: split the `polyname` column to `region` and `subregion` using `tidyr::separate`, and use `left_join()` to combine `county.fips` with the county-level map data. Then construct the map. Your figure will look similar to county-level [New York Times map](https://www.nytimes.com/elections/results/president).
 
-[Github](https://gitHub.com/AndrewM1130)
+[Github](https://gitHub.com/AndrewM1130/2016-Election-Polling)
 
 ```{r}
 #creating fips value column for county dataset

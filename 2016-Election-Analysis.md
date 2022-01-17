@@ -107,6 +107,7 @@ The first few rows and columns of the `census` data are shown below.
 -----------------------------------------------------------
 Variable descriptions are given in the `metadata` file. The variables shown above are:
 
+
 -----------------------------------------------------
   variable             description            type   
 ------------- ----------------------------- ---------
@@ -158,7 +159,7 @@ $\rightarrow$ **Using the count() and unique() functions, we know there are at l
 # Visualization
 
 Here you'll generate maps of the election data using `ggmap`. The .Rmd file for this document contains codes to generate the following map.
-<img src="2016-Election-Analysis_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
+<img src="2016-Election-Analysis_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /><img src="2016-Election-Analysis_files/figure-html/unnamed-chunk-11-2.png" style="display: block; margin: auto;" />
 
 8. Draw a county-level map with `map_data("county")` and color by county.
 <img src="2016-Election-Analysis_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
@@ -194,6 +195,9 @@ Now the data frames can be merged. `left_join(df1, df2)` takes all the rows from
 
 
 11. Now create a county-level map. The county-level map data does not have a `fips` value, so to create one, use information from `maps::county.fips`: split the `polyname` column to `region` and `subregion` using `tidyr::separate`, and use `left_join()` to combine `county.fips` with the county-level map data. Then construct the map. Your figure will look similar to county-level [New York Times map](https://www.nytimes.com/elections/results/president).
+
+[Github](https://gitHub.com/AndrewM1130/2016-Election-Polling)
+
 <img src="2016-Election-Analysis_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" />
 
   
@@ -301,6 +305,12 @@ $\rightarrow$ **From the Variance vs. PC graph of County, ~17 principal componen
 ## 10 Levels: cluster 1 cluster 2 cluster 3 cluster 4 cluster 5 ... cluster 10
 ```
 
+<img src="2016-Election-Analysis_files/figure-html/unnamed-chunk-31-1.png" style="display: block; margin: auto;" />
+
+<img src="2016-Election-Analysis_files/figure-html/unnamed-chunk-32-1.png" style="display: block; margin: auto;" />
+
+
+
 $\rightarrow$ **Above, we first applied the hierarchical clustering method 10 clusters on our census_ct observations, then again with the first five principal components as the data. After splitting into clusters, we examined cluster sizes and located the cluster containing the "San Mateo" county observation. Notice that both methods result in drastically different cluster sizes as well as different locations for our 'San Mateo' observation. Closer examination reveals that clisters built withcensus_ct contain many Caliofornia counties and seem to be grouped by location, while the clusters created off the first five principal components have no obvious conclusions. Using census_ct, with San Mateo County in cluster 2, is a more appropriate cluster than using the first five principal components, with San Mateo in cluster 7, because of the relative similarities it has to California county numbers in cluster 2. Possible explanations of this difference may include the fact that 5 principal components does not capture enough variance of the data and does not provide an accurate model.**
 
 # Classification
@@ -315,9 +325,9 @@ After merging the data, partition the result into 80% training and 20% testing p
 18. Decision tree: train a decision tree on the training partition, and apply cost-complexity pruning. Visualize the tree before and after pruning. Estimate the misclassification errors on the test partition, and interpret and discuss the results of the decision tree analysis. Use your plot to tell a story about voting behavior in the US (see this [NYT infographic](https://archive.nytimes.com/www.nytimes.com/imagepages/2008/04/16/us/20080416_OBAMA_GRAPHIC.html)).
 
 
-$\bullet$ **After closer analysis, we have determined that an alpha value of 13 will elad to the least amount of impurity within our pruned tree.**
+$\bullet$ **After closer analysis, we have determined that an alpha value of 13 will lead to the least amount of impurity within our pruned tree.**
 
-<img src="2016-Election-Analysis_files/figure-html/unnamed-chunk-34-1.png" style="display: block; margin: auto;" />
+<img src="2016-Election-Analysis_files/figure-html/unnamed-chunk-36-1.png" style="display: block; margin: auto;" />
 
 
  $\rightarrow$ **It appears that the variables used to determine the tree are Transit, White, Unemployment, County Total,, Employed. White reappears within the tree indicating that it is an important factor that results in favorable results for Trump. Employment/Unemployment is another large factor that appears to trend towards more employed areas vote for Clinton over Trump.**
@@ -398,7 +408,7 @@ $\rightarrow$ **Furthermore, we would like to dive deeper into the predictor var
 ## Setting direction: controls < cases
 ```
 
-<img src="2016-Election-Analysis_files/figure-html/unnamed-chunk-37-1.png" style="display: block; margin: auto;" />
+<img src="2016-Election-Analysis_files/figure-html/unnamed-chunk-39-1.png" style="display: block; margin: auto;" />
 
 ```
 ## The logistic model has an AUC score of 0.9597836 . A good model will have a high AUC, that is as often as possible a high sensitivity and specificity.
@@ -454,3 +464,5 @@ $\bullet$ **Above, we trained out election_county dataframe with the KNN method,
 ```
 
 $\rightarrow$ **With an accuracy rate of and false positive rate of on the test data, the KNN method seems to be lack performance when compared to the logistic regression model with its lower accuracy rate of 0.89 and higher false positive rate of 0.24. It seems that our intuition and our choice of models above was correct!**
+
+
