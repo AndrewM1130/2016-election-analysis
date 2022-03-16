@@ -1,7 +1,8 @@
 ---
 title: "U.S. Presidential Election Polling"
-author: 'Andrew Ma'
+author: "Andrew Ma"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
     keep_md: yes
@@ -767,5 +768,13 @@ errors_knn <- table(y, y_hat_knn) %>% show()
 ```
 
 $\rightarrow$ **With an accuracy rate of and false positive rate of on the test data, the KNN method seems to be lack performance when compared to the logistic regression model with its lower accuracy rate of 0.89 and higher false positive rate of 0.24. It seems that our intuition and our choice of models above was correct!**
+
+
+# References
+
+  1. O’Hara, B. (2017, May 9). How did Nate Silver predict the US election? The Guardian. https://www.theguardian.com/science/grrlscientist/2012/nov/08/nate-sliver-predict-us-election
+  2. Silver, N. (2016, November 8). 2016 Election Forecast. FiveThirtyEight. https://projects.fivethirtyeight.com/2016-election-forecast/
+
+
 
 
